@@ -25,12 +25,12 @@
         <name>ApexClass</name>
     </types>
    <types>
-        <members>TRACKING_LOG__c</members>
+        <members>Tracking_LOG__c</members>
         <name>CustomTab</name>
    </types>
    <types>
         <members>Tracking_LOG__c</members>
-        <members>TRACKING_LOG_SETTING__mdt</members>
+        <members>Tracking_log_setting__mdt</members>
         <members>TRACKING_LOG_HISTORIC__b</members>
         <members>PURGER_TIME_EXPIRATION__c</members>
         <members>TRACKING_LOG_EVENT__e</members>
