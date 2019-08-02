@@ -308,4 +308,5 @@
     </fields>
     <label>TRACKING LOG EVENT</label>
     <pluralLabel>TRACKING LOG EVENTS</pluralLabel>
+    <publishBehavior>PublishImmediately</publishBehavior>
 </CustomObject>

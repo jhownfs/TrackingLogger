@@ -54,7 +54,6 @@ global class TrackingLogEventHandler{
 
       mapTracklog.put(tck.KEY__c, tck);
     }
-      system.debug('mapTracklog = ' + mapTracklog);
 
     Database.upsert(mapTracklog.values(), Tracking_LOG__c.KEY__c);
   } 

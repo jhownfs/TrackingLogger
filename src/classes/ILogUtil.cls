@@ -26,7 +26,7 @@ global class ILogUtil{
     return blobReq.toString();
   }
 
-  public static String ConvertTypetoString(Object objReq){
+  /*public static String ConvertTypetoString(Object objReq){
     return String.valueof(objReq);
-  }
+  }*/
 }

@@ -21,9 +21,9 @@ private ILoggerService service;
      this.service.registerLogWebservice(request);
   }
 
-  global void registerLogWebservice(Object request){
+  /*global void registerLogWebservice(Object request){
      this.service.registerLogWebservice(request);
-  }
+  }*/
 
   global void setException(Exception ex){
     this.service.setException(ex);

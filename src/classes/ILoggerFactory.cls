@@ -18,9 +18,9 @@ global class ILoggerFactory{
      this.log.Request__c = ILogUtil.ConvertTypetoString(req);
   }
   
-  global void setRequest(Object req){
+  /*global void setRequest(Object req){
      this.log.Request__c = ILogUtil.ConvertTypetoString(req);
-  }
+  }*/
 
   global void startLog(ILoggerRequest req){
 

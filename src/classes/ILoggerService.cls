@@ -26,11 +26,12 @@ global class ILoggerService{
     TRACKING_LOG_EVENT__e tcke = this.response.getTrackRsp();
 
     ILoggerFactory logEnd = new ILoggerFactory(new TRACKING_LOG_EVENT__e(KEY__c = tcke.KEY__c));
-    logEnd.setRequest(this.request.getRequest());
+    if(this.request.getRequest() != null) logEnd.setRequest(this.request.getRequest());
     EventBus.publish(logEnd.endLog());
   }
 
   global void setException(Exception ex){
+      
     if(!this.helper.shouldIGenerateError()) return;
 
     TRACKING_LOG_EVENT__e tcke = this.response.getTrackRsp();
@@ -46,8 +47,8 @@ global class ILoggerService{
      this.registerLog();
   }
 
-  global void registerLogWebservice(Object objReq){
+  /*global void registerLogWebservice(Object objReq){
     this.logFactory.setRequest(objReq);
     this.registerLog();
-  }
+  }*/
 }

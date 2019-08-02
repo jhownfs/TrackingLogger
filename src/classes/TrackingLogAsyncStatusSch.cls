@@ -6,11 +6,11 @@ global with sharing class TrackingLogAsyncStatusSch implements Schedulable{
 
    to execute this command in anonymous
    System.schedule('TrackingLogAsyncStatusSch1', '0 0 * * * ?', new TrackingLogAsyncStatusSch());
-System.schedule('TrackingLogAsyncStatusSch2', '0 10 * * * ?', new TrackingLogAsyncStatusSch());
-System.schedule('TrackingLogAsyncStatusSch3', '0 20 * * * ?', new TrackingLogAsyncStatusSch());
-System.schedule('TrackingLogAsyncStatusSch4', '0 30 * * * ?', new TrackingLogAsyncStatusSch());
-System.schedule('TrackingLogAsyncStatusSch5', '0 40 * * * ?', new TrackingLogAsyncStatusSch());
-System.schedule('TrackingLogAsyncStatusSch6', '0 50 * * * ?', new TrackingLogAsyncStatusSch());
+   System.schedule('TrackingLogAsyncStatusSch2', '0 10 * * * ?', new TrackingLogAsyncStatusSch());
+   System.schedule('TrackingLogAsyncStatusSch3', '0 20 * * * ?', new TrackingLogAsyncStatusSch());
+   System.schedule('TrackingLogAsyncStatusSch4', '0 30 * * * ?', new TrackingLogAsyncStatusSch());
+   System.schedule('TrackingLogAsyncStatusSch5', '0 40 * * * ?', new TrackingLogAsyncStatusSch());
+   System.schedule('TrackingLogAsyncStatusSch6', '0 50 * * * ?', new TrackingLogAsyncStatusSch());
 
  */
   
@@ -26,8 +26,8 @@ System.schedule('TrackingLogAsyncStatusSch6', '0 50 * * * ?', new TrackingLogAsy
 
     for(Tracking_LOG__c tck: lsttracking){
         
-        if(checkDateLimit(crDat.getTime(), tck.CreatedDate.getTime())) continue;
-
+        if(!checkDateLimit(crDat.getTime(), tck.CreatedDate.getTime())) continue;
+        
         tck.Status__c = 'Finished';
         tck.Error__c = true;
         tck.ERROR_DESCRIPTION__c = 'Governance limits';
@@ -36,7 +36,7 @@ System.schedule('TrackingLogAsyncStatusSch6', '0 50 * * * ?', new TrackingLogAsy
         lstUpdate.add(tck);
     }
 
-    Database.update(lstUpdate);
+    if(!lstUpdate.IsEmpty()) Database.update(lstUpdate);
   }
 
   global Boolean checkDateLimit(Long aDateNow, Long aDateRecord){
@@ -44,7 +44,7 @@ System.schedule('TrackingLogAsyncStatusSch6', '0 50 * * * ?', new TrackingLogAsy
     Long diference = aDateNow - aDateRecord;
     Long seconds = diference / 1000;
     Long minutes = seconds / 60;
-
-    return (minutes > 10);
+    Boolean isTrue = (minutes > 10);
+    return isTrue;
   }
 }

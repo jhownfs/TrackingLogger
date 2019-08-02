@@ -7,8 +7,8 @@ global class TrackingLogEventSpec extends CompositeSpecification{
           this.lstKeys.add('\''+key+'\'');
     }
     
-    global override Boolean isSatisfiedBy(Object candidate) {
- 		return (candidate instanceof Tracking_LOG__c);
+    global override Boolean isSatisfiedBy(Object obj) {
+ 		return (obj instanceof Tracking_LOG__c);
     }
 
     global override String toSOQLClauses() {
