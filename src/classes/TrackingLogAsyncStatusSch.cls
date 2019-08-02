@@ -16,18 +16,16 @@ global with sharing class TrackingLogAsyncStatusSch implements Schedulable{
   
   global void execute(SchedulableContext sch){
      
+    Datetime dt = (test.isRunningTest()) ?  system.now() : system.now().addMinutes(-10);
+      
     list<Tracking_LOG__c> lsttracking = [SELECT id, Status__c, CreatedDate
                                           FROM Tracking_LOG__c
-                                          WHERE status__c = 'Pending'];
-
-    Datetime crDat = System.now();
+                                          WHERE status__c = 'Pending' AND createdDate <=: dt];
 
     List<Tracking_LOG__c> lstUpdate = new List<Tracking_LOG__c>();
 
     for(Tracking_LOG__c tck: lsttracking){
-        
-        if(!checkDateLimit(crDat.getTime(), tck.CreatedDate.getTime())) continue;
-        
+                
         tck.Status__c = 'Finished';
         tck.Error__c = true;
         tck.ERROR_DESCRIPTION__c = 'Governance limits';
@@ -37,14 +35,5 @@ global with sharing class TrackingLogAsyncStatusSch implements Schedulable{
     }
 
     if(!lstUpdate.IsEmpty()) Database.update(lstUpdate);
-  }
-
-  global Boolean checkDateLimit(Long aDateNow, Long aDateRecord){
-    
-    Long diference = aDateNow - aDateRecord;
-    Long seconds = diference / 1000;
-    Long minutes = seconds / 60;
-    Boolean isTrue = (minutes > 10);
-    return isTrue;
   }
 }
