@@ -7,7 +7,14 @@ As classes de testes ainda não estão construídas, mas estão sendo preparadas
 
 # Desing Pattern
 
-É utilizado um pattern de desenvolvimento em camadas, onde cada camada tem a sua responsabilidade bem definida e trabalhada.
+Os Padrões aplicados no projeto, seguen as seguintes camadas:
+
+- Controller
+- Factory
+- Helper
+- Repository
+
+Além de outros padrões adotados.
 
 # Recursos Salesforce
 
